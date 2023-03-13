@@ -1,0 +1,17 @@
+.input {
+    width: 700px;
+}
+
+.addTask__container {
+    display: flex;
+    width: 1000px;
+    justify-content: space-between;
+}
+
+.category {
+    width: 200px;
+}
+
+.addTask__btn {
+    width: 50px;
+}
