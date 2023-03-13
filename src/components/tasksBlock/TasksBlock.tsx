@@ -1,7 +1,17 @@
-import React from "react";
-
-import {tasks} from "../../data/tasks";
+import React, { useEffect } from "react";
+import { useAppSelector } from "../../store";
+import { tasksSelector } from "../../store/tasks";
+import { TaskType } from "../../types/TaskType";
 import { Task } from "../task/Task";
+
 export function TasksBlock() {
-	return <div>{tasks.map((task) => <Task task={task} />)}</div>;
+	const tasks: TaskType[] = useAppSelector(tasksSelector);
+
+	return (
+		<div>
+			{tasks.map((task: TaskType) => (
+				<Task task={task} />
+			))}
+		</div>
+	);
 }
