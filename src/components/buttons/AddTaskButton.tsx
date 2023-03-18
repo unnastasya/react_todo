@@ -1,15 +1,17 @@
 import React, { useState } from "react";
 import { Button, Dropdown, DropdownButton, Form } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { useAppDispatch } from "../../store";
-import { TasksActions } from "../../store/tasks";
+import { useAppDispatch, useAppSelector } from "../../store";
+import { categoriesSelector, TasksActions } from "../../store/tasks";
 
 import "./AddTaskButton.css";
 
 export function AddTaskButton() {
 	const dispatch = useAppDispatch();
 	const [value, setValue] = useState("");
-    const [valueCategory, setValueCategory] = useState("all")
+    const [valueCategory, setValueCategory] = useState("все задачи");
+	const allcategories = useAppSelector(categoriesSelector);
+
 
 	const AddTask = () => {
 		dispatch(TasksActions.addTask({ title: value, category: valueCategory }));
@@ -32,10 +34,7 @@ export function AddTaskButton() {
 				className="input"
 			/>
 			<Form.Select onChange={(e: any) => {changeCategory(e)}} className="category" aria-label="Default select example">
-				<option>Выберите категорию</option>
-				<option value="all">Все</option>
-				<option value="home">Домашние</option>
-				<option value="work">Рабочие</option>
+				{allcategories.map((category) => <option value={category}>{category}</option>)}
 			</Form.Select>
 			<Button
 				className="addTask__btn"

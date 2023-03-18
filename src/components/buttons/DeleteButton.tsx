@@ -1,13 +1,21 @@
 import React from "react";
 import { Button } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { useAppDispatch } from "../../store";
+import { TasksActions } from "../../store/tasks";
 
 
 export function DeleteButton({id}: any) {
+    const dispatch = useAppDispatch();
+
+
+    const deleteTask = () => {
+        dispatch(TasksActions.deleteTask(id))
+    }
 
 	return (
 		<div>
-			<Button  variant="outline-primary">
+			<Button onClick={deleteTask} variant="outline-primary">
 				<svg
 					xmlns="http://www.w3.org/2000/svg"
 					width="20"
