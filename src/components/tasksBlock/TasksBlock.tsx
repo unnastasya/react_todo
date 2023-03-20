@@ -9,16 +9,16 @@ export function TasksBlock({ tasks }: any) {
 	const category = useAppSelector(categorySelector);
 
 	if (
-		(category == "все задачи" && tasks.length == 0) ||
-		(category != "все задачи" &&
-			tasks.filter((task: TaskType) => task.category == category)
-				.length == 0)
+		(category === "все задачи" && tasks.length === 0) ||
+		(category !== "все задачи" &&
+			tasks.filter((task: TaskType) => task.category === category)
+				.length === 0)
 	) {
-		if (filterStatus == "all") {
+		if (filterStatus === "all") {
 			return <p>Задач нет</p>;
-		} else if (filterStatus == "active") {
+		} else if (filterStatus === "active") {
 			return <p>Активных задач нет</p>;
-		} else if (filterStatus == "done") {
+		} else if (filterStatus === "done") {
 			return <p>Завершенных задач нет</p>;
 		} else {
 			return null;
@@ -26,10 +26,10 @@ export function TasksBlock({ tasks }: any) {
 	} else
 		return (
 			<div>
-				{category != "все задачи"
+				{category !== "все задачи"
 					? tasks
 							.filter(
-								(task: TaskType) => task.category == category
+								(task: TaskType) => task.category === category
 							)
 							.map((task: TaskType) => <Task task={task} />)
 					: tasks.map((task: TaskType) => <Task task={task} />)}

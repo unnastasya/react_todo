@@ -1,0 +1,28 @@
+.App {
+    display: flex;
+  }
+  
+  .App__nav {
+      width: 20vw;
+      height: 100vh;
+      position: sticky;
+      top: 0;
+      background: rgba(186, 186, 186, 0.2);
+      padding: 30px 10px;
+      
+  }
+  
+  .App__content {
+      margin: 30px 10px;
+      width: 80vw;
+  
+  }
+  
+  .AppHeader {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 50px 0;
+  }
+  

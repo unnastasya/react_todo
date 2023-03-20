@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Nav } from "react-bootstrap";
+import { Button} from "react-bootstrap";
 import { useAppDispatch, useAppSelector } from "../../store";
 import {
 	categoriesSelector,
@@ -29,7 +29,7 @@ export function CategoriesBlock() {
 				<div className="category__btns">
 					<Button
 						variant={
-							category == activeCategory ? "primary" : "secondary"
+							category === activeCategory ? "primary" : "secondary"
 						}
 						className="categoriesBlock__btn"
 						onClick={() => {
@@ -38,11 +38,11 @@ export function CategoriesBlock() {
 					>
 						{category}
 					</Button>
-					{category != "все задачи" && (
+					{category !== "все задачи" && (
 						<Button
 							onClick={() => deleteCategory(category)}
 							variant={
-								category == activeCategory
+								category === activeCategory
 									? "primary"
 									: "secondary"
 							}

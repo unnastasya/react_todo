@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Alert } from "react-bootstrap";
 import { TaskType } from "../../types/TaskType";
 import { DeleteButton } from "../buttons/DeleteButton";
