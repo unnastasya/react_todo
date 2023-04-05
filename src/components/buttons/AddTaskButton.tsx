@@ -1,60 +1,126 @@
-import React, { useState } from "react";
-import { Button, Form } from "react-bootstrap";
+import React, { useEffect, useState } from "react";
+import { Button, Form, Modal } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useAppDispatch, useAppSelector } from "../../store";
-import { categoriesSelector, TasksActions } from "../../store/tasks";
-
+import { TasksActions } from "../../store/tasks";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as Yup from "yup";
 import "./AddTaskButton.css";
+import { Controller, useForm } from "react-hook-form";
+import { getCategories } from "../../api/categories";
 
-export function AddTaskButton() {
+export function AddTaskButton({ handleClose }: any) {
 	const dispatch = useAppDispatch();
-	const [value, setValue] = useState("");
-    const [valueCategory, setValueCategory] = useState("все задачи");
-	const allcategories = useAppSelector(categoriesSelector);
+	const [allcategories, setallcategories] = useState<any[]>([]);
 
+	let TaskSchema = Yup.object().shape({
+		task: Yup.string().required("Пожалуйста, введите задачу"),
+	});
 
-	const AddTask = () => {
-		dispatch(TasksActions.addTask({ title: value, category: valueCategory }));
-		setValue("");
+	const {
+		control,
+		handleSubmit,
+		formState: { errors },
+	} = useForm({
+		defaultValues: {
+			task: "",
+			description: "",
+			category: "",
+		},
+		resolver: yupResolver(TaskSchema),
+	});
+
+	const onSubmit = (data: any) => {
+		data = {
+			...data,
+			createdAt: new Date(),
+			status: "undone",
+			isActiveTask: true,
+			authorId: 1,
+		};
+		dispatch(TasksActions.changeAddData(data));
+		dispatch(TasksActions.addTask());
+		handleClose();
 	};
 
-    const changeCategory = (e: any) => {
-        setValueCategory(e.target.value)
-    }
+	useEffect(() => {
+		t();
+	}, []);
+
+	const t = async () => {
+		let data = await getCategories().then((response: any) => response);
+		setallcategories(data);
+	};
 
 	return (
-		<div className="addTask__container">
-			<Form.Control
-				value={value}
-				onChange={(event) => {
-					setValue(event.target.value);
-				}}
-				type="text"
-				placeholder="Введите задачу"
-				className="input"
-			/>
-			<Form.Select onChange={(e: any) => {changeCategory(e)}} className="category" aria-label="Default select example">
-				{allcategories.map((category) => <option value={category}>{category}</option>)}
-			</Form.Select>
-			<Button
-				className="addTask__btn"
-				onClick={AddTask}
-				variant="outline-secondary"
-			>
-				<svg
-					xmlns="http://www.w3.org/2000/svg"
-					width="16"
-					height="16"
-					fill="currentColor"
-					className="bi bi-plus-lg"
-					viewBox="0 0 16 16"
-				>
-					<path
-						fill-rule="evenodd"
-						d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"
+		<div>
+			<Modal.Header closeButton>
+				<Modal.Title>Новая задача</Modal.Title>
+			</Modal.Header>
+			<form className="" onSubmit={handleSubmit(onSubmit)}>
+				<Modal.Body>
+					<Controller
+						name="task"
+						control={control}
+						render={({ field }) => (
+							<>
+								<Form.Label>Задача</Form.Label>
+								<Form.Control
+									type="text"
+									placeholder="Задача"
+									isInvalid={Boolean(errors.task?.message)}
+									{...field}
+								></Form.Control>
+							</>
+						)}
 					/>
-				</svg>
-			</Button>
+					<Controller
+						name="description"
+						control={control}
+						render={({ field }) => (
+							<>
+								<Form.Label>Описание задачи</Form.Label>
+								<Form.Control
+									type="text"
+									placeholder="Описание задачи"
+									isInvalid={Boolean(
+										errors.description?.message
+									)}
+									{...field}
+								></Form.Control>
+							</>
+						)}
+					/>
+					<Controller
+						name="category"
+						control={control}
+						render={({ field }) => (
+							<>
+								<Form.Label>Категория</Form.Label>
+								<Form.Select
+									className="category"
+									aria-label="Default select example"
+									{...field}
+								>
+									{allcategories.map((category) => (
+										<option value={category.text}>
+											{category.text}
+										</option>
+									))}
+								</Form.Select>
+							</>
+						)}
+					/>
+				</Modal.Body>
+				<Modal.Footer>
+					<Button variant="secondary" onClick={handleClose}>
+						Отмена
+					</Button>
+					<Button type="submit" variant="primary">
+						Добавить
+					</Button>
+				</Modal.Footer>
+			</form>
 		</div>
 	);
 }

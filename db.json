@@ -1,0 +1,101 @@
+{
+  "users": [
+    {
+      "email": "user1@gmail.com",
+      "fullName": "Василий",
+      "password": "12345",
+      "id": 1
+    },
+    {
+      "email": "user2@gmail.com",
+      "fullName": "Игорь ",
+      "password": "12345",
+      "id": 2
+    },
+    {
+      "email": "user3@gmail.com",
+      "fullName": "Павел",
+      "password": "12345",
+      "id": 3
+    }
+  ],
+  "tasks": [
+    {
+      "task": "сходить в магазин",
+      "description": "",
+      "category": "Домашние",
+      "createdAt": "",
+      "authorId": 1,
+      "status": "undone",
+      "id": 1
+    },
+    {
+      "task": "Погулять с собакой",
+      "description": "",
+      "category": "Домашние",
+      "categoryID": "4",
+      "createdAt": "2023-04-04T10:13:48.867Z",
+      "status": "undone",
+      "authorId": 1,
+      "id": 2
+    },
+    {
+      "task": "мавмва",
+      "description": "",
+      "category": "Домашние",
+      "createdAt": "2023-04-05T06:39:28.325Z",
+      "status": "undone",
+      "isActiveTask": true,
+      "authorId": 1,
+      "id": 3
+    },
+    {
+      "task": "Доделать проект",
+      "description": "",
+      "category": "Рабочие",
+      "createdAt": "2023-04-05T06:39:38.082Z",
+      "status": "undone",
+      "isActiveTask": true,
+      "authorId": 1,
+      "id": 4
+    },
+    {
+      "task": "cdcd",
+      "description": "мвамва",
+      "category": "Рабочие",
+      "createdAt": "2023-04-05T09:51:20.489Z",
+      "status": "undone",
+      "isActiveTask": true,
+      "authorId": 1,
+      "id": 6
+    },
+    {
+      "task": "Доделать проект",
+      "description": "",
+      "category": "Домашние",
+      "createdAt": "2023-04-05T18:33:02.333Z",
+      "status": "undone",
+      "isActiveTask": true,
+      "authorId": 1,
+      "id": 8
+    }
+  ],
+  "categories": [
+    {
+      "text": "Все",
+      "id": 1
+    },
+    {
+      "text": "Домашние",
+      "id": 2
+    },
+    {
+      "text": "Рабочие",
+      "id": 3
+    },
+    {
+      "text": "ввв",
+      "id": 4
+    }
+  ]
+}

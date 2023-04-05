@@ -1,52 +1,64 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { Button, Modal } from "react-bootstrap";
+import { getTasks } from "../api/tasks";
 import { AddTaskButton } from "../components/buttons/AddTaskButton";
 import { CategoriesBlock } from "../components/categoriesBlock/categoriesBlock";
 import { FilterBlock } from "../components/filterBlock/filterBlock";
 import { Info } from "../components/info/info";
 import { TasksBlock } from "../components/tasksBlock/tasksBlock";
-import { useAppSelector } from "../store";
-import { filterStatusSelector, tasksCountSelector, TSelector } from "../store/tasks";
-import { TaskType } from "../types/TaskType";
+import { useAppDispatch, useAppSelector } from "../store";
+import {
+	categorySelector,
+	filterStatusSelector,
+	TasksActions,
+	TasksArraySelector,
+	tasksCountSelector,
+} from "../store/tasks";
 
-import "./TasksPage.css"
+import "./TasksPage.css";
 
-export function TasksPage()  {
-    const tasks: TaskType[] = useAppSelector(TSelector);
+export function TasksPage() {
+	const dispatch = useAppDispatch();
 	const filterStatus: string = useAppSelector(filterStatusSelector);
-    const countTasks: number = useAppSelector(tasksCountSelector)
+	const tasksCount = useAppSelector(tasksCountSelector);
+	const tasks = useAppSelector(TasksArraySelector);
+	const activeCategory = useAppSelector(categorySelector);
+
+	const [show, setShow] = useState(false);
+
+	const handleClose = () => setShow(false);
+	const handleShow = () => setShow(true);
+
+	useEffect(() => {
+		dispatch(TasksActions.requestTasks()); // 1 task
+		console.log(tasks);
+	}, []);
 
 	return (
 		<div className="App">
+			<Modal show={show} onHide={handleClose}>
+				<AddTaskButton handleClose={handleClose} />
+			</Modal>
 			<div className="App__nav">
 				<CategoriesBlock />
 			</div>
 			<div className="App__content">
-            <Info />
+				{/* <Info /> */}
 				<div className="AppHeader">
-					<AddTaskButton />
 					<FilterBlock />
+					<Button
+						className="addTask__btn"
+						variant="primary"
+						onClick={handleShow}
+					>
+						Добавить задачу
+					</Button>
 				</div>
-                <p>Количество задач: {countTasks}</p>
+				<div className="aaaa">
+					<p>Количество задач: {tasksCount}</p>
 
-				{filterStatus === "all" && (
-					<TasksBlock tasks={tasks} status="all" />
-				)}
-
-				{filterStatus === "active" && (
-					<TasksBlock
-						tasks={tasks.filter((task) => task.isActiveTask)}
-						status="all"
-					/>
-				)}
-
-				{filterStatus === "done" && (
-					<TasksBlock
-						tasks={tasks.filter((task) => !task.isActiveTask)}
-						status="all"
-					/>
-				)}
-
-				
+					<TasksBlock tasks={tasks} />
+				</div>
 			</div>
 		</div>
 	);

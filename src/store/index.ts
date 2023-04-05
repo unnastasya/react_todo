@@ -3,7 +3,26 @@ import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
 
 import { persistStore, persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
+import { CategoriesActions, CategoriesReducer } from "./categories";
 import { TasksReducer } from "./tasks";
+import createSagaMiddleware from "redux-saga";
+import { rootSaga } from "./root-saga";
+import { AuthReducer } from "./auth";
+
+const sagaMiddleware = createSagaMiddleware();
+const middlewares = [sagaMiddleware]
+
+// export const store = configureStore({
+//     reducer: {
+//         tasks: TasksReducer,
+//         categories: CategoriesReducer,
+//     },
+//     devTools: true,
+//     middleware: middlewares,
+// })
+
+// sagaMiddleware.run(rootSaga);
+
 
 const persistConfig = {
 	key: "root",
@@ -11,7 +30,9 @@ const persistConfig = {
 };
 
 const rootReducer = combineReducers({
-	tasks: TasksReducer
+	tasks: TasksReducer,
+	categories: CategoriesReducer,
+	auth: AuthReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
@@ -19,7 +40,10 @@ const persistedReducer = persistReducer(persistConfig, rootReducer);
 const store = configureStore({
 	reducer: persistedReducer,
 	devTools: true,
+	middleware: middlewares,
 });
+
+sagaMiddleware.run(rootSaga);
 
 const persistor = persistStore(store);
 

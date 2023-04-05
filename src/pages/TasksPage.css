@@ -1,28 +1,35 @@
 .App {
-    display: flex;
-  }
-  
-  .App__nav {
-      width: 20vw;
-      height: 100vh;
-      position: sticky;
-      top: 0;
-      background: rgba(186, 186, 186, 0.2);
-      padding: 30px 10px;
-      
-  }
-  
-  .App__content {
-      margin: 30px 10px;
-      width: 80vw;
-  
-  }
-  
-  .AppHeader {
-      width: 100%;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin: 50px 0;
-  }
-  
+	display: flex;
+}
+
+.App__nav {
+	width: 20vw;
+	height: 100vh;
+	position: sticky;
+	top: 0;
+	background: rgba(186, 186, 186, 0.2);
+	padding: 30px 10px;
+}
+
+.App__content {
+	width: 80vw;
+}
+
+.aaaa {
+    margin: 100px 20px 0px;
+}
+.AppHeader {
+	width: 80vw;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 50px;
+	position: fixed;
+	background: white;
+	padding: 30px 20px 20px;
+	border-bottom: 1px solid #ccc;
+}
+
+.addTask__btn {
+	width: 200px;
+}

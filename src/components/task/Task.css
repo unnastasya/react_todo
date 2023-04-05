@@ -1,5 +1,53 @@
 .task__btns {
-    wi
+	display: flex;
+	justify-content: space-between;
+}
+
+.task_title {
+	font-weight: 500;
+	font-size: 24px;
+	line-height: 100%;
+	margin-left: 10px;
+}
+
+.Checkbox {
+	display: flex;
+}
+
+.task_description {
+	color: rgba(0, 0, 0, 0.7);
+}
+
+.task_undone {
+	/* background: #e6e6e6; */
+	border-radius: 10px;
+    border: 1px solid #0055e8;
+	padding: 10px;
+	margin: 20px 0 0;
     display: flex;
+    justify-content: space-between;
+}
+.task_done {
+	background: #e6e6e6;
+    opacity: 0.6;
+	border-radius: 10px;
+    border: 1px solid #0055e8;
+	padding: 10px;
+	margin: 20px 0 0;
+    display: flex;
+    justify-content: space-between;
+}
+.category_block {
+	background: #0055e8;
+    width: 100px;
+    color: white;
+    text-align: center;
+	border-radius: 10px;
+	padding: 5px;
+}
+
+.task_btns {
+    display: flex;
+    width: 200px;
     justify-content: space-between;
 }

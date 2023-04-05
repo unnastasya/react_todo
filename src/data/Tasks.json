@@ -2,11 +2,14 @@
     "tasks" : [
         {
             "id": 0,
-            "title":  "Сходить в магазин"
+            "title":  "Сходить в магазин",
+            "isActiveTask": true
         },
         {
             "id": 1,
-            "title":  "Купить книгу"
+            "title":  "Купить книгу",
+            "isActiveTask": true
+
         }
     ]
 }

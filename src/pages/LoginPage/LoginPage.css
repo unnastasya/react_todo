@@ -1,13 +1,43 @@
 .LoginPage {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     min-height: 100vh;
     align-items: center;
 }
 
 .form_login {
-    width: 700px;
+    width: 600px;
     background: rgba(0, 0, 0, 0.1);
     border-radius: 10px;
     padding: 20px;
+}
+
+.registration_errors {
+    border-radius: 10px;
+    padding: 10px;
+    margin: 10px 0;
+    background: rgb(255, 56, 56);
+}
+
+.register_text {
+    font-weight: bold;
+}
+
+.buttons_block {
+	width: 560px;
+	display: flex;
+	justify-content: space-between;
+	margin-top: 20px;
+}
+
+.button {
+	width: 280px;
+	display: flex;
+	justify-content: center;
+}
+
+.login_title {
+    font-weight: 600;
+    font-size: 52px;
 }

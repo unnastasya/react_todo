@@ -17,14 +17,14 @@ export function FilterBlock() {
 		<div>
 			<ButtonGroup aria-label="Basic example">
 				<Button
-					variant={filterStatus === "all" ? "primary" : "secondary"}
-					onClick={() => changeFilter("all")}
+					variant={filterStatus === "Все" ? "primary" : "secondary"}
+					onClick={() => {dispatch(TasksActions.changeFilter("Все")); }}
 				>
 					Все задачи
 				</Button>
 				<Button
-					variant={filterStatus === "active" ? "primary" : "secondary"}
-					onClick={() => changeFilter("active")}
+					variant={filterStatus === "undone" ? "primary" : "secondary"}
+					onClick={() => changeFilter("undone")}
 				>
 					Активные
 				</Button>

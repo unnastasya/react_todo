@@ -1,0 +1,14 @@
+.category__btns {
+    display: flex;
+    width: 280px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.categoriesBlock__btn {
+    width: 200px;
+}
+
+.categoriesBlock__Addbtn {
+    /* width: 40px; */
+}
