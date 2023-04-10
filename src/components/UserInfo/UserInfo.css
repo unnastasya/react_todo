@@ -1,0 +1,19 @@
+.UserInfo {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 30px;
+}
+
+.userInfo__nameBlock {
+    height: 40px;
+    padding: 5px 10px;
+    border: 2px solid #0055e8;
+    border-radius: 10px;
+}
+
+.userInfo__name {
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 30px;
+}
