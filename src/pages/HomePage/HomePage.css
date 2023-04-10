@@ -1,14 +1,67 @@
 .homePage {
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+	min-height: 100vh;
+	width: 100vw;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
-.homePage_buttons {
-    width: 400px;
-    height: 100px;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
+.homePage__buttonsBlock {
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+}
+
+.homePage__button {
+	height: 50px;
+	margin: 0;
+}
+
+@media (min-width: 1201px) {
+	.homePage__buttonsBlock {
+		width: 60vw;
+		background: red;
+	}
+	.homePage__button {
+		width: 20vw;
+	}
+}
+@media (min-width: 961px) and (max-width: 1200px) {
+	.homePage__buttonsBlock {
+		width: 60vw;
+		background: red;
+	}
+	.homePage__button {
+		width: 20vw;
+	}
+}
+@media (max-width: 960px) and (min-width: 641px) {
+	.homePage__buttonsBlock {
+		width: 70vw;
+	}
+	.homePage__button {
+		width: 30vw;
+	}
+}
+@media (max-width: 640px) and (min-width: 481px) {
+	.homePage__buttonsBlock {
+		flex-direction: column;
+		width: 80vw;
+		height: 150px;
+	}
+	.homePage__button {
+		width: 80vw;
+	}
+}
+
+@media (max-width: 480px) {
+	.homePage__buttonsBlock {
+		flex-direction: column;
+		width: 100vw;
+		height: 150px;
+	}
+
+	.homePage__button {
+		width: 80vw;
+	}
 }

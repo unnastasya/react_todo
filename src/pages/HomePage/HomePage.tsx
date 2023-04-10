@@ -7,12 +7,12 @@ import "./HomePage.css";
 export function HomePage() {
 	return (
 		<div className="homePage">
-			<div className="homePage_buttons">
+			<div className="homePage__buttonsBlock">
 				<Link to="/login">
-					<Button variant="outline-secondary">Войти</Button>
+					<Button className="homePage__button" variant="primary">Войти</Button>
 				</Link>
 				<Link to="/register">
-					<Button variant="outline-secondary">
+					<Button className="homePage__button" variant="outline-primary">
 						Зарегистрироваться
 					</Button>
 				</Link>
