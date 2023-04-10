@@ -1,20 +1,25 @@
 import React, { useEffect, useState } from "react";
-import { Form } from "react-bootstrap";
+import { Alert, Form } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { Controller } from "react-hook-form";
 import { Button } from "react-bootstrap";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
 
-
 import "./LoginPage.css";
-import { Link, useNavigate } from "react-router-dom";
-import { findUser } from "../../api/auth";
+import { Link, Navigate } from "react-router-dom";
+import { useAppDispatch, useAppSelector } from "../../store";
+import {
+	AuthActions,
+	ErrorMessageDataSelector,
+	IsAuthUserSelector,
+} from "../../store/auth";
+import { UserLoginType } from "../../types/UserType";
 
 export function LoginPage() {
-	const [errorsData, setErrorsData] = useState<any[]>();
-	const [loginErrorsData, setLoginErrorsData] = useState<string[]>([]);
-    const navigate = useNavigate();
+	const dispatch = useAppDispatch();
+	const loginErrorsData = useAppSelector(ErrorMessageDataSelector);
+	const isAuthUser = useAppSelector(IsAuthUserSelector);
 
 	let LoginSchema = Yup.object().shape({
 		email: Yup.string()
@@ -27,7 +32,7 @@ export function LoginPage() {
 		control,
 		handleSubmit,
 		formState: { errors },
-	} = useForm({
+	} = useForm<UserLoginType>({
 		defaultValues: {
 			email: "",
 			password: "",
@@ -36,85 +41,70 @@ export function LoginPage() {
 		mode: "onChange",
 	});
 
-	const onSubmit = async (data: any) => {
-		const resodata = await findUser(data).then( (response) => response);
-		if (resodata.length === 0) {
-			setLoginErrorsData(["Пользователь не найден"]);
-            return;
-		} else {
-			setLoginErrorsData([]);
-		}
-        if (resodata[0].password !== data.password) {
-            setLoginErrorsData(["Неверный логин или пароль"]);
-            return;
-        } else {
-            setLoginErrorsData([]);
-        }
-        navigate(`/tasks`)
-		console.log(resodata);
+	const onSubmit = (data: UserLoginType) => {
+		const value = { ...data };
+		dispatch(AuthActions.changeLoginData(value));
+		dispatch(AuthActions.requestLogin());
 	};
 
-	
+	if (isAuthUser) {
+		return <Navigate to="/tasks" />;
+	}
 
-	
-
-	useEffect(() => {
-		setErrorsData(Object.values(errors));
-	}, [errors]);
 	return (
-		<div className="LoginPage">
-            <p className="login_title">Войти</p>
-			<form className="form_login" onSubmit={handleSubmit(onSubmit)}>
+		<div className="loginPage">
+			<p className="loginPage__title">Войти</p>
+			<form className="loginPage__form" onSubmit={handleSubmit(onSubmit)}>
 				<Controller
 					name="email"
 					control={control}
 					render={({ field }) => (
 						<>
-							<Form.Label>Email address</Form.Label>
+							<Form.Label>Email</Form.Label>
 							<Form.Control
 								type="email"
-								placeholder="Email"
+								placeholder="E-mail"
 								isInvalid={Boolean(errors.email?.message)}
 								{...field}
 							></Form.Control>
+							<p className="loginPage__validationError">
+								{errors.email?.message}
+							</p>
 						</>
 					)}
 				/>
+
 				<Controller
 					name="password"
 					control={control}
 					render={({ field }) => (
 						<>
-							<Form.Label>Password</Form.Label>
+							<Form.Label>Пароль</Form.Label>
 							<Form.Control
 								type="password"
-								placeholder="password"
+								placeholder="Пароль"
 								isInvalid={Boolean(errors.password?.message)}
 								{...field}
 							></Form.Control>
+							<p className="validationError">
+								{errors.password?.message}
+							</p>
 						</>
 					)}
 				/>
-				{!(Object.keys(errors).length === 0) && (
-					<div className="registration_errors">
-						{errorsData?.map((error) => (
-							<p className="register_text">{error.message}</p>
-						))}
-					</div>
+				{loginErrorsData && (
+					<Alert variant="danger">
+						<p>{loginErrorsData}</p>
+					</Alert>
 				)}
-				{!(loginErrorsData.length === 0) && (
-					<div className="registration_errors">
-						{loginErrorsData?.map((error) => (
-							<p className="register_text">{error}</p>
-						))}
-					</div>
-				)}
-                <div className="buttons_block">
-				<Button className="button" type="submit">Войти</Button>
-                <Link className="button" to="/register">
-					<Button variant="link">Зарегистрироваться</Button>
-				</Link>
-                </div>
+				<div className="loginPage__buttonsBlock">
+					<Button className="loginPage__button" type="submit">
+						Войти
+					</Button>
+					<Link className="loginPage__button" to="/register">
+						<Button variant="link">Зарегистрироваться</Button>
+					</Link>
+				</div>
 			</form>
 		</div>
 	);
