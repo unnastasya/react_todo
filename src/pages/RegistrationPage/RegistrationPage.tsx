@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Button } from "react-bootstrap";
 import { Form } from "react-bootstrap";
 import { useForm } from "react-hook-form";
@@ -40,7 +40,6 @@ export function RegistrationPage() {
 	});
 
 	const onSubmit = (data: any) => {
-		console.log(data);
 		const value = { ...data };
 		dispatch(AuthActions.changeRegisterData(value));
 		dispatch(AuthActions.registerUser());

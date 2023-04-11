@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Alert, Form } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { Controller } from "react-hook-form";
@@ -86,7 +86,7 @@ export function LoginPage() {
 								isInvalid={Boolean(errors.password?.message)}
 								{...field}
 							></Form.Control>
-							<p className="validationError">
+							<p className="loginPage__validationError">
 								{errors.password?.message}
 							</p>
 						</>

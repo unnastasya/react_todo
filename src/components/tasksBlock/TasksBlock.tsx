@@ -1,44 +1,53 @@
 import React from "react";
 import { useAppSelector } from "../../store";
-import { categorySelector, filterStatusSelector } from "../../store/tasks";
+import {
+	categoryFilterSelector,
+	statusFilterSelector,
+	tasksArraySelector,
+} from "../../store/tasks";
 import { TaskType } from "../../types/TaskType";
-import { Task } from "../task/Task";
+import { Task } from "../Task/Task";
 
 import "./TasksBlock.css";
 
-export function TasksBlock({ tasks }: any) {
-	const filterStatus: string = useAppSelector(filterStatusSelector);
-	const category = useAppSelector(categorySelector);
+export function TasksBlock() {
+	const filterStatus: string = useAppSelector(statusFilterSelector);
+	const category: string = useAppSelector(categoryFilterSelector);
+	const tasks: TaskType[] = useAppSelector(tasksArraySelector);
 
-	if (
-		(tasks.length === 0) 
-	) {
+	if (tasks.length === 0) {
 		if (filterStatus === "Все") {
 			if (category === "Все") {
-				return <p className="info_block">Задач нет</p>;
+				return <p className="tasksBlock__infoBlock">Задач нет</p>;
 			} else {
 				return (
-					<p className="info_block">
+					<p className="tasksBlock__infoBlock">
 						Задач из категории "{category}" нет
 					</p>
 				);
 			}
 		} else if (filterStatus === "undone") {
 			if (category === "Все") {
-				return <p className="info_block">Активных задач нет</p>;
+				return (
+					<p className="tasksBlock__infoBlock">Активных задач нет</p>
+				);
 			} else {
 				return (
-					<p className="info_block">
+					<p className="tasksBlock__infoBlock">
 						Активных задач из категории "{category}" нет
 					</p>
 				);
 			}
 		} else if (filterStatus === "done") {
 			if (category === "Все") {
-				return <p className="info_block">Завершенных задач нет</p>;
+				return (
+					<p className="tasksBlock__infoBlock">
+						Завершенных задач нет
+					</p>
+				);
 			} else {
 				return (
-					<p className="info_block">
+					<p className="tasksBlock__infoBlock">
 						Завершенных задач из категории "{category}" нет
 					</p>
 				);
@@ -49,8 +58,8 @@ export function TasksBlock({ tasks }: any) {
 	} else
 		return (
 			<div>
-				{tasks.map((task: any) => (
-					<Task task={task} />
+				{tasks.map((task: TaskType) => (
+					<Task key={task.id} task={task} />
 				))}
 			</div>
 		);

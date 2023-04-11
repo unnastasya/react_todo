@@ -1,6 +1,7 @@
-.info_block {
-    border: 1px solid #0055e8;
-    width: 100%;
-    padding: 10px;
-    border-radius: 10px;
+.tasksBlock__infoBlock {
+	border: 1px solid #0055e8;
+	width: 100%;
+	padding: 10px;
+	border-radius: 10px;
+    margin-top: 20px;
 }

@@ -1,8 +1,17 @@
 import { fork } from "redux-saga/effects";
-import { watchLoginSaga } from "./auth/sagas";
-import { watchgetAddCategorySaga, watchgetCategoriesSaga, watchgetDeleteCategorySaga } from "./categories/sagas";
-import { watchAddTaskSaga, watchChangeCategoryTaskSaga, watchChangeFilterTaskSaga, watchDeleteTaskSaga, watchGetTasksSaga } from "./tasks/sagas";
-
+import { watchgetRegisterSaga, watchLoginSaga } from "./auth/sagas";
+import {
+	watchgetAddCategorySaga,
+	watchgetCategoriesSaga,
+	watchgetDeleteCategorySaga,
+} from "./categories/sagas";
+import {
+	watchAddTaskSaga,
+	watchChangeCategoryTaskSaga,
+	watchChangeFilterTaskSaga,
+	watchDeleteTaskSaga,
+	watchGetTasksSaga,
+} from "./tasks/sagas";
 
 export function* rootSaga() {
 	yield fork(watchgetCategoriesSaga);
@@ -14,5 +23,5 @@ export function* rootSaga() {
 	yield fork(watchLoginSaga);
 	yield fork(watchChangeFilterTaskSaga);
 	yield fork(watchChangeCategoryTaskSaga);
-
+	yield fork(watchgetRegisterSaga);
 }

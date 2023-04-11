@@ -1,53 +1,67 @@
 import React from "react";
 import { Button } from "react-bootstrap";
-import { deleteCategories } from "../../../api/categories";
-import { useAppDispatch, useAppSelector } from "../../../store";
-import { CategoriesActions } from "../../../store/categories";
-import { categorySelector, TasksActions } from "../../../store/tasks";
+import { useAppDispatch, useAppSelector } from "../../store";
+import { CategoriesActions } from "../../store/categories";
+import { categoryFilterSelector, TasksActions } from "../../store/tasks";
+import { CategoryType } from "../../types/CategoryType";
 import "./Category.css";
 
-export function Category({ category }: any) {
-	console.log("category", category);
+interface CategoryProps {
+	category: CategoryType;
+}
+
+export function Category({ category }: CategoryProps) {
 	const dispatch = useAppDispatch();
-	const activeCategory = useAppSelector(categorySelector);
+	const activeCategory: string = useAppSelector(categoryFilterSelector);
 
 	const changeCategory = () => {
 		if (category.text === "Все") {
-			console.log("ALL");
-
 			dispatch(TasksActions.changeCategory("Все"));
 		} else {
-			console.log("NOT ALL");
-
 			dispatch(TasksActions.changeCategory(category.text));
+		}
+        closeCategoryModal()
+	};
+
+    const closeCategoryModal = () => {
+        dispatch(CategoriesActions.closeCategoriesModal())
+    }
+
+	const deleteCategory = (e: any) => {
+		dispatch(
+			CategoriesActions.changeDeleteData({
+				id: e.currentTarget.id,
+				name: e.currentTarget.name,
+			})
+		);
+		dispatch(CategoriesActions.deleteCategory());
+		if (activeCategory === e.currentTarget.name) {
+			dispatch(TasksActions.changeCategory("Все"));
 		}
 	};
 
-	const deleteCategory = (e: any) => {
-		dispatch(CategoriesActions.changeDeleteData(e.currentTarget.id));
-		dispatch(CategoriesActions.deleteCategory());
-	};
 	return (
-		<div className="category__btns">
+		<div className="category__buttonsBlock">
 			<Button
 				variant={
 					category.text === activeCategory ? "primary" : "secondary"
 				}
-				className="categoriesBlock__btn"
+				className="category__button"
 				onClick={changeCategory}
 			>
 				{category.text}
 			</Button>
 			{category.text !== "Все" && (
 				<Button
-					id={category.id}
+					id={String(category.id)}
+					name={category.text}
 					onClick={(e) => deleteCategory(e)}
 					variant={
 						category.text === activeCategory
 							? "primary"
 							: "secondary"
 					}
-					className="categoriesBlock__Addbtn"
+					className="category__deleteButton"
 				>
 					<svg
 						xmlns="http://www.w3.org/2000/svg"

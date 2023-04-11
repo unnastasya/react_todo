@@ -1,14 +1,13 @@
 import React from "react";
 import { Button } from "react-bootstrap";
-import "bootstrap/dist/css/bootstrap.min.css";
 import { useAppDispatch } from "../../store";
 import { TasksActions } from "../../store/tasks";
 
-export function DeleteButton({ id }: any) {
+export function DeleteButton({ task }: any) {
 	const dispatch = useAppDispatch();
 
 	const deleteTask = () => {
-		dispatch(TasksActions.changeDeleteData(id));
+		dispatch(TasksActions.changeDeleteData(task.id));
 		dispatch(TasksActions.deleteTask());
 	};
 

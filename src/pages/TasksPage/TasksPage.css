@@ -1,0 +1,100 @@
+.tasksPage {
+	display: flex;
+}
+
+.tasksPage__categoriesBlock {
+	width: 25vw;
+	height: 100vh;
+	position: fixed;
+	top: 0;
+	padding: 30px 10px;
+	background: rgba(186, 186, 186, 0.2);
+}
+
+.tasksPage__header {
+	background: white;
+	height: 70px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 50px;
+	position: fixed;
+	padding: 20px 20px;
+	border-bottom: 1px solid #ccc;
+	z-index: 3;
+}
+
+.tasksPage__tasksBlock {
+	height: 90vh;
+	margin: 70px 0px 0px;
+	padding: 10px 20px;
+}
+
+@media (min-width: 1201px) {
+	.tasksPage__content {
+		width: 75vw;
+		margin-left: 25vw;
+	}
+
+	.tasksPage__header {
+		width: 75vw;
+	}
+
+	.tasksPage__tasksBlock {
+		width: 75vw;
+	}
+}
+@media (min-width: 961px) and (max-width: 1200px) {
+	.tasksPage__content {
+		width: 75vw;
+		margin-left: 25vw;
+	}
+
+	.tasksPage__header {
+		width: 75vw;
+	}
+
+	.tasksPage__tasksBlock {
+		width: 75vw;
+	}
+}
+@media (max-width: 960px) and (min-width: 641px) {
+	.tasksPage__content {
+		width: 100vw;
+	}
+
+	.tasksPage__header {
+		width: 100vw;
+	}
+
+	.tasksPage__tasksBlock {
+		width: 100vw;
+	}
+}
+@media (max-width: 640px) and (min-width: 481px) {
+	.tasksPage__content {
+		width: 100vw;
+	}
+
+	.tasksPage__header {
+		width: 100vw;
+	}
+
+	.tasksPage__tasksBlock {
+		width: 100vw;
+	}
+}
+
+@media (max-width: 480px) {
+	.tasksPage__content {
+		width: 100vw;
+	}
+
+	.tasksPage__header {
+		width: 100vw;
+	}
+
+	.tasksPage__tasksBlock {
+		width: 100vw;
+	}
+}

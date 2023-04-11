@@ -1,0 +1,15 @@
+.CategoriesModal__header {
+	height: 5vw;
+	display: flex;
+	justify-content: end;
+}
+
+.CategoriesModal__body {
+	width: 100%;
+	height: 95vh;
+	margin: 0;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding: 30px 10px;
+}

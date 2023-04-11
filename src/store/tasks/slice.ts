@@ -4,22 +4,31 @@ import { TaskType } from "../../types/TaskType";
 
 export type TasksStateType = {
 	tasks: TaskType[];
+	tasksCount: number;
 	isLoadingTasks: boolean;
 	hasErrorTasks: boolean;
-	filter: string;
-	findCategory: string;
-	tasksCount: number;
-	deleteTaskData?: any;
-	addTaskData?: any;
+	statusFilter: string;
+	categoryFilter: string;
+	deleteTaskData?: number;
+	addTaskData?: TaskType;
+
+	isOpenAddTaskModal: boolean;
+	isOpenChangeTaskModal: boolean;
+	changeTaskData?: any;
 };
 
 const initialState: TasksStateType = {
 	tasks: [],
 	isLoadingTasks: false,
 	hasErrorTasks: false,
-	filter: "Все",
-	findCategory: "Все",
+	statusFilter: "Все",
+	categoryFilter: "Все",
 	tasksCount: 0,
+
+	isOpenAddTaskModal: false,
+	isOpenChangeTaskModal: false,
+	changeTaskData: {},
+
 };
 
 const NAME = "Tasks";
@@ -29,7 +38,7 @@ const requestTasks: CaseReducer<TasksStateType> = (state) => {
 	state.hasErrorTasks = false;
 };
 
-const successTasks: CaseReducer<TasksStateType, PayloadAction<any[]>> = (
+const successTasks: CaseReducer<TasksStateType, PayloadAction<TaskType[]>> = (
 	state,
 	{ payload }
 ): any => {
@@ -49,7 +58,7 @@ const addTask: CaseReducer<TasksStateType> = (state) => {
 	state.hasErrorTasks = false;
 };
 
-const changeAddData: CaseReducer<TasksStateType, PayloadAction<any>> = (
+const changeAddData: CaseReducer<TasksStateType, PayloadAction<TaskType>> = (
 	state,
 	{ payload }
 ) => {
@@ -84,7 +93,7 @@ const changeFilter: CaseReducer<TasksStateType, PayloadAction<string>> = (
 ) => {
 	state.isLoadingTasks = true;
 	state.hasErrorTasks = false;
-	state.filter = payload;
+	state.statusFilter = payload;
 };
 
 const onlychangeFilter: CaseReducer<TasksStateType, PayloadAction<string>> = (
@@ -93,16 +102,16 @@ const onlychangeFilter: CaseReducer<TasksStateType, PayloadAction<string>> = (
 ) => {
 	state.isLoadingTasks = true;
 	state.hasErrorTasks = false;
-	state.filter = payload;
+	state.statusFilter = payload;
 };
 
 const changeCategory: CaseReducer<TasksStateType, PayloadAction<string>> = (
 	state,
-	{payload}
+	{ payload }
 ) => {
 	state.isLoadingTasks = true;
 	state.hasErrorTasks = false;
-	state.findCategory = payload;
+	state.categoryFilter = payload;
 };
 
 const onlychangeCategory: CaseReducer<TasksStateType, PayloadAction<string>> = (
@@ -111,7 +120,27 @@ const onlychangeCategory: CaseReducer<TasksStateType, PayloadAction<string>> = (
 ) => {
 	state.isLoadingTasks = true;
 	state.hasErrorTasks = false;
-	state.findCategory = payload;
+	state.categoryFilter = payload;
+};
+
+const openAddTaskModal: CaseReducer<TasksStateType> = (state) => {
+	state.isOpenAddTaskModal = true;
+};
+
+const closeAddTaskModal: CaseReducer<TasksStateType> = (state) => {
+	state.isOpenAddTaskModal = false;
+};
+
+const openChangeTaskModal: CaseReducer<
+	TasksStateType,
+	PayloadAction<TaskType>
+> = (state, { payload }) => {
+	state.isOpenChangeTaskModal = true;
+	state.changeTaskData = payload;
+};
+
+const closeChangeTaskModal: CaseReducer<TasksStateType> = (state) => {
+	state.isOpenChangeTaskModal = false;
 };
 
 export const { actions: TasksActions, reducer: TasksReducer } = createSlice({
@@ -128,7 +157,11 @@ export const { actions: TasksActions, reducer: TasksReducer } = createSlice({
 		failureTasks,
 		changeDeleteData,
 		changeAddData,
-        onlychangeFilter,
-        onlychangeCategory
+		onlychangeFilter,
+		onlychangeCategory,
+		openAddTaskModal,
+		closeAddTaskModal,
+		openChangeTaskModal,
+		closeChangeTaskModal,
 	},
 });

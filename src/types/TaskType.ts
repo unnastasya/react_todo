@@ -1,6 +1,14 @@
 export type TaskType = {
-    id: number;
-    title: string;
-    isActiveTask: boolean;
-    category: string;
-}
+    [index: string]: any;
+	id: number;
+	task: string;
+	description: string;
+	category: string;
+	status: "done" | "undone" | "overdue";
+	isActiveTask: boolean;
+	createdAt: string;
+    dateTo?: string;
+	authorId: number;
+};
+
+

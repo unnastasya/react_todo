@@ -1,0 +1,11 @@
+.category__buttonsBlock {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.category__button {
+    width: 70%;
+}

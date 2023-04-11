@@ -21,81 +21,65 @@
   ],
   "tasks": [
     {
-      "task": "сходить в магазин",
-      "description": "",
+      "task": "Сходить за покупками",
+      "description": "Купить хлеб, молоко и сыр",
       "category": "Домашние",
-      "createdAt": "",
-      "authorId": 1,
+      "dateTo": "",
+      "createdAt": "2023-04-11T14:35:05.869Z",
       "status": "undone",
+      "isActiveTask": true,
+      "authorId": 1,
       "id": 1
     },
     {
       "task": "Погулять с собакой",
       "description": "",
       "category": "Домашние",
-      "categoryID": "4",
-      "createdAt": "2023-04-04T10:13:48.867Z",
+      "dateTo": "",
+      "createdAt": "2023-04-11T14:35:26.797Z",
       "status": "undone",
+      "isActiveTask": true,
       "authorId": 1,
       "id": 2
     },
     {
-      "task": "мавмва",
-      "description": "",
-      "category": "Домашние",
-      "createdAt": "2023-04-05T06:39:28.325Z",
+      "task": "Доделать проект",
+      "description": "Дописать документацию, сделать рефакторинг кода",
+      "category": "Рабочие",
+      "dateTo": "2023-04-20",
+      "createdAt": "2023-04-11T14:35:45.753Z",
       "status": "undone",
       "isActiveTask": true,
       "authorId": 1,
       "id": 3
     },
     {
-      "task": "Доделать проект",
+      "task": "Запланировать поездку на выходные",
       "description": "",
-      "category": "Рабочие",
-      "createdAt": "2023-04-05T06:39:38.082Z",
+      "category": "",
+      "dateTo": "2023-04-14",
+      "createdAt": "2023-04-11T14:36:07.367Z",
       "status": "undone",
       "isActiveTask": true,
       "authorId": 1,
       "id": 4
-    },
-    {
-      "task": "cdcd",
-      "description": "мвамва",
-      "category": "Рабочие",
-      "createdAt": "2023-04-05T09:51:20.489Z",
-      "status": "undone",
-      "isActiveTask": true,
-      "authorId": 1,
-      "id": 6
-    },
-    {
-      "task": "Доделать проект",
-      "description": "",
-      "category": "Домашние",
-      "createdAt": "2023-04-05T18:33:02.333Z",
-      "status": "undone",
-      "isActiveTask": true,
-      "authorId": 1,
-      "id": 8
     }
   ],
   "categories": [
     {
       "text": "Все",
+      "authorId": "",
       "id": 1
     },
     {
-      "text": "Домашние",
+      "text": "Рабочие",
+      "authorId": 1,
       "id": 2
     },
     {
-      "text": "Рабочие",
+      "text": "Домашние",
+      "authorId": 1,
       "id": 3
-    },
-    {
-      "text": "ввв",
-      "id": 4
     }
   ]
 }

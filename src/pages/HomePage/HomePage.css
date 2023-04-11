@@ -20,7 +20,6 @@
 @media (min-width: 1201px) {
 	.homePage__buttonsBlock {
 		width: 60vw;
-		background: red;
 	}
 	.homePage__button {
 		width: 20vw;
@@ -29,7 +28,6 @@
 @media (min-width: 961px) and (max-width: 1200px) {
 	.homePage__buttonsBlock {
 		width: 60vw;
-		background: red;
 	}
 	.homePage__button {
 		width: 20vw;

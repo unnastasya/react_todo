@@ -1,35 +1,24 @@
-import React, { useEffect, useState } from "react";
-import { Button } from "react-bootstrap";
-import { getCategories } from "../../api/categories";
-import { useAppDispatch, useAppSelector } from "../../store";
-import {
-	CategoriesActions,
-	CategoriesArraySelector,
-} from "../../store/categories";
-import { categorySelector, TasksActions } from "../../store/tasks";
-import { AddCategory } from "./addCategory/AddCategory";
+import React from "react";
+import { useAppSelector } from "../../store";
+import { categoriesArraySelector } from "../../store/categories";
+import { CategoryType } from "../../types/CategoryType";
+import { UserInfo } from "../UserInfo/UserInfo";
+import { AddCategoryBlock } from "../AddCategoryBlock/AddCategoryBlock";
 
-import "./categoriesBlock.css";
-import { Category } from "./category/Category";
+import "./CategoriesBlock.css";
+import { Category } from "../Category/Category";
 
 export function CategoriesBlock() {
-	const dispatch = useAppDispatch();
-	const activeCategory = useAppSelector(categorySelector);
-	const allcategories = useAppSelector(CategoriesArraySelector);
-
-	const changeCategory = (str: string) => {
-		dispatch(TasksActions.changeCategory(str));
-	};
-
-	useEffect(() => {
-		dispatch(CategoriesActions.requestCategories());
-	}, []);
+	const allcategories: CategoryType[] = useAppSelector(
+		categoriesArraySelector
+	);
 
 	return (
-		<div className="categories__conteiner">
-			<AddCategory />
-			{allcategories.map((category) => (
-				<Category category={category} />
+		<div className="categoriesBlock">
+			<UserInfo />
+			<AddCategoryBlock />
+			{allcategories.map((category: CategoryType) => (
+				<Category key={category.id} category={category} />
 			))}
 		</div>
 	);
