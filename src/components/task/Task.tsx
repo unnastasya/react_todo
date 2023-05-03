@@ -20,9 +20,12 @@ export function Task({ task }: TaskProps) {
 	);
     const dateTo = dayjs(task.dateTo).format("dd, DD MMMM YYYY")
 
+    dayjs.locale("ru");
+
     useEffect(() => {
+        console.log("OVER")
         isOverdueTask(task);
-    })
+    }, [value])
     
 	const changeValue = () => {
 		if (value === "undone") {
