@@ -82,7 +82,7 @@ export function AddTaskModal() {
 					<FormSelect
 						control={control}
 						name="category"
-						label="Описание задачи"
+						label="Категория"
 						options={categories}
 					/>
 					<FormInput
