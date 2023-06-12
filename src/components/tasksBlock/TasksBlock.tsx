@@ -57,7 +57,7 @@ export function TasksBlock() {
 		}
 	} else
 		return (
-			<div>
+			<div data-testid="tasks-block">
 				{tasks.map((task: TaskType) => (
 					<Task key={task.id} task={task} />
 				))}

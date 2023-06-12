@@ -1,0 +1,41 @@
+{
+    "tasks": [
+        {
+            "id": 1,
+            "task": "go to shop",
+            "description": "",
+            "category": "work",
+            "status": "undone",
+            "isActiveTask": true,
+            "createdAt": "",
+            "authorId": 1
+        },
+        {
+            "id": 2,
+            "task": "walk with dog",
+            "description": "",
+            "category": "home",
+            "status": "done",
+            "isActiveTask": false,
+            "createdAt": "",
+            "authorId": 1
+        }
+    ],
+    "categories": [
+        {
+            "text": "Все",
+            "authorId": 0,
+            "id": 1
+        },
+        {
+            "text": "work",
+            "authorId": 1,
+            "id": 2
+        },
+        {
+            "text": "home",
+            "authorId": 1,
+            "id": 3
+        }
+    ]
+}

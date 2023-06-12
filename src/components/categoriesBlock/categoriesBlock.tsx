@@ -7,14 +7,13 @@ import { AddCategoryBlock } from "../AddCategoryBlock/AddCategoryBlock";
 
 import "./CategoriesBlock.css";
 import { Category } from "../Category/Category";
+import { useSelector } from "react-redux";
 
 export function CategoriesBlock() {
-	const allcategories: CategoryType[] = useAppSelector(
-		categoriesArraySelector
-	);
+	const allcategories: CategoryType[] = useSelector(categoriesArraySelector);
 
 	return (
-		<div className="categoriesBlock">
+		<div className="categoriesBlock" data-testid={`categoriesBlock`}>
 			<UserInfo />
 			<AddCategoryBlock />
 			{allcategories.map((category: CategoryType) => (

@@ -20,12 +20,12 @@ export function Category({ category }: CategoryProps) {
 		} else {
 			dispatch(TasksActions.changeCategory(category.text));
 		}
-        closeCategoryModal()
+		closeCategoryModal();
 	};
 
-    const closeCategoryModal = () => {
-        dispatch(CategoriesActions.closeCategoriesModal())
-    }
+	const closeCategoryModal = () => {
+		dispatch(CategoriesActions.closeCategoriesModal());
+	};
 
 	const deleteCategory = (e: any) => {
 		dispatch(
@@ -48,6 +48,7 @@ export function Category({ category }: CategoryProps) {
 				}
 				className="category__button"
 				onClick={changeCategory}
+				data-testid={`category__${category.text}`}
 			>
 				{category.text}
 			</Button>
@@ -62,6 +63,7 @@ export function Category({ category }: CategoryProps) {
 							: "secondary"
 					}
 					className="category__deleteButton"
+					data-testid={`category__${category.text}__deleteButton`}
 				>
 					<svg
 						xmlns="http://www.w3.org/2000/svg"

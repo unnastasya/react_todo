@@ -8,7 +8,11 @@ import { StatusBlock } from "../../components/StatusBlock/StatusBlock";
 import { TasksBlock } from "../../components/TasksBlock/TasksBlock";
 import { useAppDispatch, useAppSelector } from "../../store";
 import { CategoriesActions } from "../../store/categories";
-import { changeTaskDataSelector, TasksActions, tasksCountSelector } from "../../store/tasks";
+import {
+	changeTaskDataSelector,
+	TasksActions,
+	tasksCountSelector,
+} from "../../store/tasks";
 
 import "./TasksPage.css";
 
@@ -31,11 +35,10 @@ export function TasksPage() {
 		dispatch(TasksActions.openAddTaskModal());
 	};
 
-
 	return (
 		<div className="tasksPage">
 			<AddTaskModal />
-            <ChangeTaskModal />
+			<ChangeTaskModal />
 
 			{width > 960 ? (
 				<div className="tasksPage__categoriesBlock">
