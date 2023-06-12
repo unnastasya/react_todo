@@ -8,7 +8,7 @@ import { TasksPage } from "./pages/TasksPage/TasksPage";
 function App() {
 	return (
 		<Routes>
-			<Route path="/" element={<HomePage />}></Route>
+			<Route index element={<HomePage />}></Route>
 			<Route path="login" element={<LoginPage />} />
 			<Route path="register" element={<RegistrationPage />} />
 			<Route path="tasks" element={<TasksPage />}></Route>
