@@ -48,21 +48,10 @@
       "category": "Рабочие",
       "dateTo": "2023-05-18",
       "createdAt": "2023-04-11T14:35:45.753Z",
-      "status": "undone",
+      "status": "overdue",
       "isActiveTask": true,
       "authorId": 1,
       "id": 3
-    },
-    {
-      "task": "Запланировать поездку на выходные",
-      "description": "",
-      "category": "",
-      "dateTo": "2023-05-10",
-      "createdAt": "2023-04-11T14:36:07.367Z",
-      "status": "undone",
-      "isActiveTask": true,
-      "authorId": 1,
-      "id": 4
     }
   ],
   "categories": [
